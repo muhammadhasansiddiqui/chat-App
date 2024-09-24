@@ -1,50 +1,45 @@
-import { useState } from "react";
-import Button from "../components/Button";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../database/firebase.config";
-import { useNavigate } from "react-router";
+import React from 'react';
 
-function SignIn() {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState(""); 
-  const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
+const Login = () => {
+    return (
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+            <h1 className="mb-6 text-4xl font-bold text-blue-600">LOGIN Page</h1>
+            <form className="p-8 bg-white rounded shadow-md w-96">
+                <div className="mb-4">
+                    <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="username">
+                        Username
+                    </label>
+                    <input
+                        className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:ring"
+                        type="text"
+                        id="username"
+                        placeholder="Enter your username"
+                        required
+                    />
+                </div>
+                <div className="mb-6">
+                    <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="password">
+                        Password
+                    </label>
+                    <input
+                        className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:ring"
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        required
+                    />
+                </div>
+                <div className="flex items-center justify-between">
+                    <button
+                        className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+                        type="submit"
+                    >
+                        Login
+                    </button>
+                </div>
+            </form>
+        </div>
+    );
+};
 
-  const handleSignIn = async () => {
-    try {
-      setLoading(true);
-      console.log(email, password);
-      const user = await signInWithEmailAndPassword(auth, email, password);
-      navigate("/");
-      setLoading(false);
-    } catch (err) {
-      setLoading(false);
-    }
-  };
-  return (
-    <div className="container items-center justify-center mx-auto">
-      <div className="flex flex-col items-center">
-        <h1 className="my-3 font-bold">Sign krke apne Kartoot Dekhlo</h1>
-        <input
-          className="w-full p-2 my-2 border rounded-md lg:w-1/2"
-          placeholder="Email"
-          value={email}
-          type="email"
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          className="w-full p-2 my-2 border rounded-md lg:w-1/2"
-          placeholder="Password"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-
-        <Button onClick={handleSignIn} isLoading={loading} text={"Login"} />
-      </div>
-    </div>
-  );
-}
-export default SignIn;
+export default Login;
