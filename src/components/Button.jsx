@@ -1,17 +1,25 @@
+import React from 'react';
+import { Button as NextUIButton } from '@nextui-org/react';
+import confetti from 'canvas-confetti';
 
-function Button({ text, onClick, isLoading }) {
+const ConfettiButton = () => {
+  const handleConfetti = () => {
+    confetti({
+      particleCount: 100, // Number of particles
+      spread: 70,         // Spread of the confetti
+      origin: { y: 0.6 }  // Origin point (y position)
+    });
+  };
 
   return (
-    <button
-      onClick={onClick}
-      disabled={isLoading}
-      className={`
-    ${theme == "light" ? "bg-gray-700 text-white" : "bg-gray-200 text-black"}
-    p-1 px-4 m-1 rounded  `}
+    <NextUIButton
+      className="relative overflow-visible rounded-full hover:-translate-y-1 px-12 shadow-xl bg-background/30 after:content-[''] after:absolute after:rounded-full after:inset-0 after:bg-background/40 after:z-[-1] after:transition after:!duration-500 hover:after:scale-150 hover:after:opacity-0"
+      size="lg"
+      onPress={handleConfetti}
     >
-      {isLoading ? "loading.." : text}
-    </button>
+      Press me
+    </NextUIButton>
   );
-}
+};
 
-export default Button;
+export default ConfettiButton;

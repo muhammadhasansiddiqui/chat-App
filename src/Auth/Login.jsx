@@ -1,12 +1,19 @@
 import React from 'react';
+import ConfettiButton from '../components/Button';
+import Loader from '../components/loder';
 
 const Login = () => {
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
             <h1 className="mb-6 text-4xl font-bold text-blue-600">LOGIN Page</h1>
+
+            <ConfettiButton />
+            <Loader />
+
+
             <form className="p-8 bg-white rounded shadow-md w-96">
                 <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="username">
+                    <label className="block mb-2 text-sm font-bold text-gray-700 bg-red-500" htmlFor="username">
                         Username
                     </label>
                     <input
@@ -38,6 +45,7 @@ const Login = () => {
                     </button>
                 </div>
             </form>
+    
         </div>
     );
 };
