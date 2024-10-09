@@ -1,12 +1,16 @@
+import Navbar from "../components/navbar"
+import {  useNavigate } from "react-router-dom";
 
-function Home(params) {
+export default function chatList() {
+    const navigate = useNavigate()
+
+
     return (
         <div>
-            <h1>Home</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.</p>
+            <Navbar />
+
+
+
         </div>
     )
 }
-    
-
-export default Home;

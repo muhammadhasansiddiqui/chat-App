@@ -1,89 +1,26 @@
-import React from "react";
-import {Navbar, NavbarBrand, NavbarMenuToggle, NavbarMenuItem, NavbarMenu, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react";
-// import {AcmeLogo} from "./AcmeLogo.jsx";
+import { Link, useNavigate } from "react-router-dom";
 
-export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+export default function Navbar() {
+    const navigate = useNavigate()
 
-  const menuItems = [
-    "Profile",
-    "Dashboard",
-    "Activity",
-    "Analytics",
-    "System",
-    "Deployments",
-    "My Settings",
-    "Team Settings",
-    "Help & Feedback",
-    "Log Out",
-  ];
 
-  return (
-    <Navbar
-      isBordered
-      isMenuOpen={isMenuOpen}
-      onMenuOpenChange={setIsMenuOpen}
-    >
-      <NavbarContent className="sm:hidden" justify="start">
-        <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
-      </NavbarContent>
+    const handleLogout = () => {
+        localStorage.removeItem("userId")
+        navigate('/login')
+    }
 
-      <NavbarContent className="pr-3 sm:hidden" justify="center">
-        <NavbarBrand>
-          <AcmeLogo />
-          <p className="font-bold text-inherit">ACME</p>
-        </NavbarBrand>
-      </NavbarContent>
-
-      <NavbarContent className="hidden gap-4 sm:flex" justify="center">
-        <NavbarBrand>
-          <AcmeLogo />
-          <p className="font-bold text-inherit">ACME</p>
-        </NavbarBrand>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Features
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link href="#" aria-current="page">
-            Customers
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Integrations
-          </Link>
-        </NavbarItem>
-      </NavbarContent>
-
-      <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Button as={Link} color="warning" href="#" variant="flat">
-            Sign Up
-          </Button>
-        </NavbarItem>
-      </NavbarContent>
-
-      <NavbarMenu>
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
-            <Link
-              className="w-full"
-              color={
-                index === 2 ? "warning" : index === menuItems.length - 1 ? "danger" : "foreground"
-              }
-              href="#"
-              size="lg"
-            >
-              {item}
-            </Link>
-          </NavbarMenuItem>
-        ))}
-      </NavbarMenu>
-    </Navbar>
-  );
+    return (
+        <div className="text-2xl bg-[#0f546f] w-full py-6 px-20 mb-16 flex justify-between text-white">
+            <h1 className="font-semibold">React-SMIT</h1>
+            <div className="flex gap-8 font-thin text-lg">
+                <Link to={'/'}>Home</Link>
+                <Link to={'/chatList'}>Chat</Link>
+                <Link to={'/Location'}>Location</Link>
+                <Link to={'/marketPlace'}>MarketPlace</Link>
+                <Link to={'/imgSwap'}>Face Swap</Link>
+                <Link to={'/Profile'}>Profile</Link>
+            </div>
+            <button onClick={handleLogout}>Logout</button>
+        </div>
+    )
 }
