@@ -95,7 +95,7 @@ const Signup = () => {
                     </div>
                 </form>
                 <div className="mt-6 text-center flex justify-between">
-                    <Link className="text-sm text-indigo-900 hover:text-indigo-950" to="/login">
+                    <Link className="text-sm text-indigo-900 hover:text-indigo-950" to="/">
                         Already have an account?
                     </Link>
                     <a className="text-sm text-indigo-500 hover:text-indigo-700" href="#">
