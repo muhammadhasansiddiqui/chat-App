@@ -15,6 +15,8 @@ export default function ChatList() {
     getUser();
   }, []);
 
+
+  
   const getUser = async () => {
     let uid = await localStorage.getItem("userid");
     setUid(uid);
